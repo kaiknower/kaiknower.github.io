@@ -928,3 +928,6 @@ svg.tx{margin:0 -.07em}
 .bib-copy:hover{background:#262a37}
 .ext-links+.dek{margin-top:22px}
 @media (max-width:520px){.ext-links{gap:7px}.ext-links .button{padding:9px 12px;gap:7px;font-size:13.5px}}
+
+/* four link buttons: two tidy rows of two on narrow screens instead of three plus one */
+@media (max-width:560px){.ext-links{display:grid;grid-template-columns:repeat(2,max-content);justify-content:center}.ext-links .button{justify-content:center}}
