@@ -29,6 +29,11 @@ jobs:
           lfs: true
           path: website
           persist-credentials: false
+      - name: Check out the RoboEvo2 page
+        uses: actions/checkout@v6
+        with:
+          path: site
+          persist-credentials: false
       - name: Prepare MobiAgent website
         run: |
           python3 - <<'PY'
@@ -41,8 +46,7 @@ jobs:
           shutil.copytree(source, Path('_site/mobiagent'))
           Path('_site/.nojekyll').touch()
           Path('_site/index.html').write_text('<!doctype html><html lang="en"><meta charset="utf-8"><title>MobiAgent</title><meta http-equiv="refresh" content="0;url=./mobiagent/"><a href="./mobiagent/">Open MobiAgent</a></html>')
-          Path('_site/RoboEvo2').mkdir()
-          Path('_site/RoboEvo2/index.html').write_text('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>RoboEvo&sup2;</title></head><body></body></html>')
+          shutil.copytree(Path('site/RoboEvo2'), Path('_site/RoboEvo2'))
           PY
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
